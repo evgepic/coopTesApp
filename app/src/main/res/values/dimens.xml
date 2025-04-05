@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="giant">48dp</dimen>
+    <dimen name="eextraLarge">40dp</dimen>
+    <dimen name="extraLarge">32dp</dimen>
+    <dimen name="halfExtraLarge">24dp</dimen>
+    <dimen name="large">20dp</dimen>
+    <dimen name="medium">16dp</dimen>
+    <dimen name="small">12dp</dimen>
+    <dimen name="superSmall">8dp</dimen>
+    <dimen name="extraSmall">4dp</dimen>
+    <dimen name="ultraSmall">2dp</dimen>
+    <dimen name="empty">0dp</dimen>
+
+    <dimen name="tinyText">13sp</dimen>
+    <dimen name="smallText">16sp</dimen>
+    <dimen name="mediumText">18sp</dimen>
+    <dimen name="halfBigText">20sp</dimen>
+    <dimen name="bigText">22sp</dimen>
+    <dimen name="halfLargeText">24sp</dimen>
+    <dimen name="largeText">28sp</dimen>
+    <dimen name="extraLargeText">32sp</dimen>
+    <dimen name="eextraLargeText">40sp</dimen>
+
+    <dimen name="tinyImageSize">20dp</dimen>
+    <dimen name="smallImageSize">28dp</dimen>
+    <dimen name="menuIconSize">40dp</dimen>
+    <dimen name="menuImageSize">48dp</dimen>
+    <dimen name="iconImageSize">52dp</dimen>
+    <dimen name="mediumImageSize">64dp</dimen>
+    <dimen name="profileImageSize">96dp</dimen>
+    <dimen name="largeImageSize">128dp</dimen>
+
+    <dimen name="inputFieldHeight">64dp</dimen>
+
+    <!--region Radius-->
+    <dimen name="radiusSmall">8dp</dimen>
+    <dimen name="radiusMedium">12dp</dimen>
+    <dimen name="radiusLarge">16dp</dimen>
+    <dimen name="radiusHuge">20dp</dimen>
+    <!--endregion Radius-->
+
+    <!--region Fields-->
+    <dimen name="editFieldBorder">1.5dp</dimen>
+    <dimen name="editFieldRadius">@dimen/radiusSmall</dimen>
+    <!--endregion Fields-->
+
+    <!--region Buttons-->
+    <dimen name="buttonRadius">@dimen/radiusMedium</dimen>
+    <dimen name="buttonRadiusSmall">@dimen/radiusSmall</dimen>
+    <!--endregion Buttons-->
+    <!--region Chips-->
+    <dimen name="chipRadius">@dimen/radiusHuge</dimen>
+    <dimen name="chipRadiusSmall">@dimen/radiusSmall</dimen>
+    <dimen name="chipSpacing">@dimen/extraSmall</dimen>
+    <!--endregion Chips-->
+    <!--region Dialogs-->
+    <dimen name="alertDialogRadius">@dimen/radiusSmall</dimen>
+    <dimen name="alertDialogTextSizeTitle">@dimen/halfBigText</dimen>
+    <dimen name="alertDialogTextSizeBody">@dimen/smallText</dimen>
+    <dimen name="alertDialogTextSizeButton">14sp</dimen>
+    <dimen name="alertDialogWindowMinWidthMinor">80%</dimen>
+    <!--endregion Dialogs-->
+</resources>
