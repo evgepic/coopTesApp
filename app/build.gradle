@@ -14,8 +14,10 @@ android {
         targetSdk 35
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        kapt {
+            arguments { arg("room.schemaLocation", "$projectDir/schemas") }
+        }
     }
     buildFeatures {
         viewBinding true
@@ -36,6 +38,12 @@ android {
 }
 
 dependencies {
+    implementation libs.androidx.room.runtime
+    implementation(libs.firebase.bom)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.database)
+    kapt libs.androidx.room.compiler
+    implementation libs.androidx.room.ktx
     implementation libs.androidx.navigation.fragment.ktx
     implementation libs.material.v190
     implementation libs.androidx.navigation.ui.ktx

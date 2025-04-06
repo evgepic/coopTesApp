@@ -15,5 +15,13 @@
     <fragment
         android:id="@+id/registrationFragment2"
         android:name="com.example.cooptesapp.views.RegistrationFragment"
-        android:label="RegistrationFragment" />
+        android:label="RegistrationFragment" >
+        <action
+            android:id="@+id/action_registrationFragment2_to_storeFragment"
+            app:destination="@id/storeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storeFragment"
+        android:name="com.example.cooptesapp.views.StoreFragment"
+        android:label="StoreFragment" />
 </navigation>

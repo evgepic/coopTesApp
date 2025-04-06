@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "514234097779",
+    "project_id": "cooptestapp",
+    "storage_bucket": "cooptestapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514234097779:android:30dc4c018bed664b224a06",
+        "android_client_info": {
+          "package_name": "com.example.cooptesapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvaAWZqnjSZ6C5BIwCHJ0KzPbcAVFplPI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
