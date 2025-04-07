@@ -16,7 +16,7 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
         binding = FragmentRegistrationBinding.bind(view)
         binding?.apply {
             loginBtn.setOnClickListener {
-                findNavController().navigate(R.id.action_registrationFragment2_to_storeFragment)
+                findNavController().popBackStack()
             }
         }
     }

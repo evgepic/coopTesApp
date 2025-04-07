@@ -4,17 +4,37 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cooptesapp.database.DataBaseRepository
 import com.example.cooptesapp.models.db.BarcodeEntity
+import com.example.cooptesapp.models.db.PackEntity
+import com.example.cooptesapp.models.db.PackPriceEntity
+import com.example.cooptesapp.models.db.UnitEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainViewModel : ViewModel() {
 
-    fun insert(dB: DataBaseRepository) {
-        val barcode = BarcodeEntity(pack_id = 10, body = "First")
+    fun insert(dB: DataBaseRepository, shipmentsList: List<Shipment>) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                dB.addBarcode(barcode)
+                shipmentsList.forEach { item ->
+                    val dimensionId = dB.addUnit(UnitEntity(name = item.dimension.name))
+                    val packId = dB.addPack(
+                        PackEntity(
+                            unit_id = dimensionId,
+                            name = item.name,
+                            type = 1,
+                            quant = item.quantity
+                        )
+                    )
+                    dB.addPackPrice(
+                        PackPriceEntity(
+                            price = item.price.amount,
+                            bonus = item.price.bonus,
+                            pack_id = packId
+                        )
+                    )
+                    dB.addBarcode(BarcodeEntity(pack_id = packId, body = item.barcode.body))
+                }
             }
         }
     }
@@ -27,3 +47,25 @@ class MainViewModel : ViewModel() {
     }
 
 }
+
+data class Shipment(
+    val name: String,
+    val barcode: Barcode,
+    val dimension: Dimension,
+    val type: Long,
+    val price: Price,
+    val quantity: Long
+)
+
+data class Barcode(
+    val body: String
+)
+
+data class Dimension(
+    val name: String
+)
+
+data class Price(
+    val amount: Long,
+    val bonus: Long
+)

@@ -5,9 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "pack_price")
 data class PackPriceEntity(
-    @PrimaryKey
-    val id: Int,
-    val pack_id: Int,
-    val price: Int,
-    val bonus: Int
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+    val pack_id: Long,
+    val price: Long,
+    val bonus: Long
 )

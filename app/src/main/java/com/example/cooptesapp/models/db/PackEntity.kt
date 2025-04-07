@@ -5,10 +5,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "pack")
 data class PackEntity(
-    @PrimaryKey
-    val id: Int,
-    val unit_id: Int,
-    val text: String,
-    val type: Int,
-    val quant: Int
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+    val unit_id: Long,
+    val name: String,
+    val type: Long,
+    val quant: Long
 )

@@ -3,8 +3,5 @@ package com.example.cooptesapp.views
 import androidx.fragment.app.Fragment
 import com.example.cooptesapp.R
 
-class BasketFragment : Fragment(R.layout.fragment_basket) {
-
-
-
+class ProfileFragment : Fragment(R.layout.fragment_profile) {
 }

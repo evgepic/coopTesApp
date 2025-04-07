@@ -3,6 +3,7 @@ package com.example.cooptesapp.views
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cooptesapp.R
 import com.example.cooptesapp.databinding.FragmentStoreBinding
@@ -31,6 +32,12 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
             shipmentsRW.apply {
                 layoutManager = LinearLayoutManager(activity)
                 adapter = _adapter
+            }
+            profileBtn.setOnClickListener {
+                findNavController().navigate(R.id.action_storeFragment_to_profileFragment)
+            }
+            basketBtn.setOnClickListener {
+                findNavController().navigate(R.id.action_storeFragment_to_basketFragment)
             }
         }
     }
