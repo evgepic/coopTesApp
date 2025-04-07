@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         )
         viewmodel.insert(dbRep, listOf(first))
         viewmodel.getAll(dbRep)
+        viewmodel.getPackWithUnit(dbRep)
     }
 
 }

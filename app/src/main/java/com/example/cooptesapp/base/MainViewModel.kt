@@ -17,11 +17,11 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 shipmentsList.forEach { item ->
-                    val dimensionId = dB.addUnit(UnitEntity(name = item.dimension.name))
+                    val dimensionId = dB.addUnit(UnitEntity(unitName = item.dimension.name))
                     val packId = dB.addPack(
                         PackEntity(
                             unit_id = dimensionId,
-                            name = item.name,
+                            packName = item.name,
                             type = 1,
                             quant = item.quantity
                         )
@@ -33,7 +33,7 @@ class MainViewModel : ViewModel() {
                             pack_id = packId
                         )
                     )
-                    dB.addBarcode(BarcodeEntity(pack_id = packId, body = item.barcode.body))
+                    dB.addBarcode(BarcodeEntity(pack__id = packId, body = item.barcode.body))
                 }
             }
         }
@@ -42,6 +42,15 @@ class MainViewModel : ViewModel() {
     fun getAll(dB: DataBaseRepository) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
+            }
+        }
+    }
+
+    fun getPackWithUnit(dB: DataBaseRepository) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                val x = dB.getPacksWithUnit()
+                x
             }
         }
     }

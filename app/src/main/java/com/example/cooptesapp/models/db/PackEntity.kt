@@ -6,9 +6,9 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "pack")
 data class PackEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
+    val packId: Long = 0,
     val unit_id: Long,
-    val name: String,
+    val packName: String,
     val type: Long,
     val quant: Long
 )

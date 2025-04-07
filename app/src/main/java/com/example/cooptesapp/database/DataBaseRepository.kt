@@ -21,4 +21,6 @@ class DataBaseRepository(
 
     suspend fun addPack(packEntity: PackEntity) = packDao.insertPack(packEntity)
 
+    suspend fun getPacksWithUnit() = packDao.getPackWithUnit()
+
 }
