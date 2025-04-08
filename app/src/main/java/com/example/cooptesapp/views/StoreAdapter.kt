@@ -8,7 +8,7 @@ import com.example.cooptesapp.R
 import com.example.cooptesapp.databinding.ItemShipmentBinding
 import com.example.cooptesapp.models.domain.Shipment
 
-class StoreAdapter(private val shipments: List<Shipment>) :
+class StoreAdapter(var shipments: List<Shipment>) :
     RecyclerView.Adapter<StoreAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

@@ -6,31 +6,27 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import androidx.navigation.Navigation.findNavController
-import com.example.cooptesapp.R
 import com.example.cooptesapp.api.AuthRepositoryImp
-import com.example.cooptesapp.api.LoginUseCase
+import com.example.cooptesapp.api.RegistrationUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class AuthViewModel(
-    private val loginValidationUseCase: LoginUseCase
-) : ViewModel() {
+class RegistrationViewModel(private val registrationUseCase: RegistrationUseCase) : ViewModel() {
 
     val login: MutableLiveData<String> = MutableLiveData("evgepic@gmail.com")
     val password: MutableLiveData<String> = MutableLiveData("123456")
 
-    fun logIn() {
+    fun registration() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                loginValidationUseCase.login(login.value, password.value)
+                registrationUseCase.registration(login.value, password.value)
                     .catch {
                         it
                     }
                     .collect({
-                        //
+                        it
                     })
             }
         }
@@ -39,10 +35,11 @@ class AuthViewModel(
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                AuthViewModel(
-                    LoginUseCase(AuthRepositoryImp())
+                RegistrationViewModel(
+                    RegistrationUseCase(AuthRepositoryImp())
                 )
             }
         }
     }
+
 }

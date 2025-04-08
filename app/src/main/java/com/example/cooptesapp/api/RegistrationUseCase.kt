@@ -1,11 +1,12 @@
 package com.example.cooptesapp.api
 
+import com.example.cooptesapp.models.UserBio
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class LoginValidationUseCase(private val authRepository: AuthRepository) {
+class RegistrationUseCase(private val authRepository: AuthRepository) {
 
-    suspend fun validateLogin(login: String?, password: String?): Flow<User> =
+    fun registration(login: String?, password: String?): Flow<User> =
         flow {
             if (login == null) throw LoginValidationCase.EmptyLoginField()
             if (password == null) throw LoginValidationCase.EmptyPasswordField()
@@ -13,7 +14,18 @@ class LoginValidationUseCase(private val authRepository: AuthRepository) {
             if (login.isEmailNotValid()) throw LoginValidationCase.WrongEmail()
             if (password.isEmpty()) throw LoginValidationCase.EmptyPasswordField()
             if (password.isPasswordToWeak()) throw LoginValidationCase.WeakPassCase()
-            authRepository.logInWithEmailAndPassword(login, password)
+            val userRequest = authRepository.registration(login, password)
+            userRequest.user.also { user ->
+                if (user?.uid != null) {
+                    authRepository.createUserBio(
+                        UserBio("N", "SN", "SURN", user.uid)
+                    )
+                }
+            }
         }
+
+    fun createBio(name: String, secondName: String, surname: String) {
+
+    }
 
 }

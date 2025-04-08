@@ -20,8 +20,8 @@ class AuthorizationFragment : Fragment(R.layout.fragment_authorization) {
         binding = FragmentAuthorizationBinding.bind(view)
         binding?.apply {
             loginBtn.setOnClickListener {
-                viewmodel.logIn()
-                //findNavController().navigate(R.id.action_authFragment_to_storeFragment)
+               // viewmodel.logIn()
+                findNavController().navigate(R.id.action_authFragment_to_storeFragment)
             }
             registrationBtn.setOnClickListener {
                 findNavController().navigate(R.id.action_authFragment_to_registrationFragment)

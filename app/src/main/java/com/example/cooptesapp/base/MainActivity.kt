@@ -4,7 +4,8 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cooptesapp.R
-import com.example.cooptesapp.database.DataBaseRepository
+import com.example.cooptesapp.database.DataBaseRepositoryInstance
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         val unitDao = (application as DataBaseInstance).getDataBaseInstance().unitDao()
         val packDao = (application as DataBaseInstance).getDataBaseInstance().packDao()
         val packPriceDao = (application as DataBaseInstance).getDataBaseInstance().packPriceDao()
-        val dbRep = DataBaseRepository(barcodeDao, packDao, packPriceDao, unitDao)
+/*        val dbRep = DataBaseRepositoryInstance(barcodeDao, packDao, packPriceDao, unitDao)
         val first = Shipment(
             "Pizza",
             Barcode("003300"),
@@ -25,10 +26,13 @@ class MainActivity : AppCompatActivity() {
             1,
             Price(570, 50),
             700
-        )
-        viewmodel.insert(dbRep, listOf(first))
-        viewmodel.getAll(dbRep)
-        viewmodel.getPackWithUnit(dbRep)
+        )*/
+        //val db = Firebase.firestore
+        /*db.collection("users").ge("user").addOnSuccessListener {
+            it
+        }.addOnFailureListener{
+            it
+        }*/
     }
 
 }
