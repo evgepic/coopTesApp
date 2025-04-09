@@ -1,4 +1,6 @@
-package com.example.cooptesapp.api
+package com.example.cooptesapp.usecases
+
+import com.example.cooptesapp.api.BasketRepository
 
 class AddToBasketUseCase(private val basketRepository: BasketRepository) {
 

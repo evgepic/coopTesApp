@@ -15,7 +15,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/loginET"
             style="@style/baseInputEdit.Focusable"
-            android:hint="Логин" />
+            android:hint="Email" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -39,7 +39,8 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginBtn"
         style="@style/bottomButton"
-        android:text="Логин"
+        android:text="Вход"
+        android:layout_marginTop="@dimen/extraLarge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
@@ -48,6 +49,7 @@
         android:id="@+id/registrationBtn"
         style="@style/bottomButton"
         android:text="Регистрация"
+        android:padding="@dimen/small"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

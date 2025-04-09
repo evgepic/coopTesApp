@@ -4,10 +4,10 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.cooptesapp.api.AddToBasketUseCase
-import com.example.cooptesapp.api.BasketRepositoryImp
-import com.example.cooptesapp.api.DataBaseRepositoryRoomImp
-import com.example.cooptesapp.api.ShipmentsUseCase
+import com.example.cooptesapp.usecases.AddToBasketUseCase
+import com.example.cooptesapp.api.imp.BasketRepositoryImp
+import com.example.cooptesapp.api.imp.DataBaseRepositoryRoomImp
+import com.example.cooptesapp.usecases.ShipmentsUseCase
 import com.example.cooptesapp.base.DataBaseInstance
 import com.example.cooptesapp.database.DataBaseRepositoryInstance
 import com.example.cooptesapp.models.domain.Shipment

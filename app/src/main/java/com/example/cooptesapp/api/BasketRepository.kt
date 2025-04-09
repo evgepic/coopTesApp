@@ -1,5 +1,6 @@
 package com.example.cooptesapp.api
 
+import com.example.cooptesapp.models.domain.BasketModel
 import kotlinx.coroutines.flow.Flow
 
 interface BasketRepository {

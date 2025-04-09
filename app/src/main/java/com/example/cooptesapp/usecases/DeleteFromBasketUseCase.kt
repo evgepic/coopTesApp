@@ -1,4 +1,6 @@
-package com.example.cooptesapp.api
+package com.example.cooptesapp.usecases
+
+import com.example.cooptesapp.api.BasketRepository
 
 class DeleteFromBasketUseCase(private val basketRepository: BasketRepository) {
     fun deleteFromBasket(packId: Long) {

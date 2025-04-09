@@ -36,5 +36,16 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.cooptesapp.views.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_draftsFragment"
+            app:destination="@id/draftsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/draftsFragment"
+        android:name="com.example.cooptesapp.views.DraftsFragment"
+        android:label="DraftsFragment" />
+    <argument
+        android:name="list"
+        app:argType="com.example.cooptesapp.models.domain.DraftModel" />
 </navigation>

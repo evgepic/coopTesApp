@@ -3,7 +3,7 @@ package com.example.cooptesapp.models.domain
 import com.example.cooptesapp.database.ShipmentEntity
 
 data class Shipment(
-    val packId: Long,
+    val packId: Long ,
     val name: String,
     val barcode: Barcode,
     val dimension: Dimension,

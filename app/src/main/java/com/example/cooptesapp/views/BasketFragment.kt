@@ -23,6 +23,9 @@ class BasketFragment : Fragment(R.layout.fragment_basket) {
                 layoutManager = LinearLayoutManager(activity)
                 adapter = _adapter
             }
+            doPay.setOnClickListener {
+                viewmodel.doPayment()
+            }
         }
         viewmodel.getBasketItems()
         viewmodel.list.observe(viewLifecycleOwner, {

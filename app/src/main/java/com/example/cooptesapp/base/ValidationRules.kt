@@ -1,4 +1,4 @@
-package com.example.cooptesapp.api
+package com.example.cooptesapp.base
 
 fun String.isPasswordToWeak() = this.length < 6
 

@@ -1,4 +1,4 @@
-package com.example.cooptesapp.views
+package com.example.cooptesapp.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -24,9 +24,15 @@ class StoreAdapter(
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.name.text = shipments[position].name
-        holder.binding.root.setOnClickListener {
-            onItemClick(shipments[position])
+        shipments[position].let {
+            holder.binding.name.text = it.name
+            holder.binding.price.text =
+                it.price.amount.toString() + "за ${it.dimension.name}"
+            holder.binding.priceWithDiscount.text =
+                (it.price.amount - it.price.bonus).toString() + "за ${it.dimension.name}"
+            holder.binding.root.setOnClickListener {
+                onItemClick(shipments[position])
+            }
         }
     }
 

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.example.cooptesapp.R
 import com.example.cooptesapp.databinding.DialogFragmentStoreBinding
-import com.example.cooptesapp.models.BasketDialogModel
+import com.example.cooptesapp.models.domain.BasketDialogModel
 
 
 class StoreDialogFragment(private val resultAction: (basketDialogModel: BasketDialogModel) -> Unit) :
@@ -48,6 +48,11 @@ class StoreDialogFragment(private val resultAction: (basketDialogModel: BasketDi
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
 }

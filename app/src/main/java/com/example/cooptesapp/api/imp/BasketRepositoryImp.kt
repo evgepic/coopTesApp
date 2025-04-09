@@ -1,5 +1,8 @@
-package com.example.cooptesapp.api
+package com.example.cooptesapp.api.imp
 
+import com.example.cooptesapp.models.domain.BasketModel
+import com.example.cooptesapp.api.BasketRepository
+import com.example.cooptesapp.base.InputValidation
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -9,7 +12,7 @@ import kotlinx.coroutines.tasks.await
 class BasketRepositoryImp : BasketRepository {
 
     private val dB = FirebaseFirestore.getInstance()
-    private val user = Firebase.auth.currentUser?.uid ?: throw LoginValidationCase.UserNotExist()
+    private val user = Firebase.auth.currentUser?.uid ?: throw InputValidation.UserNotExist()
 
     override fun addToBasket(packId: Long, amount: Long) {
         dB.collection("baskets/$user/items").whereEqualTo("shipmentId", packId).get()

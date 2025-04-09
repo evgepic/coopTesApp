@@ -1,4 +1,4 @@
-package com.example.cooptesapp.models
+package com.example.cooptesapp.models.db
 
 data class UserBio(
     val name: String,

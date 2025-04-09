@@ -1,5 +1,7 @@
-package com.example.cooptesapp.api
+package com.example.cooptesapp.usecases
 
+import com.example.cooptesapp.api.BasketRepository
+import com.example.cooptesapp.api.DataBaseRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn

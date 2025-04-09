@@ -1,7 +1,8 @@
 package com.example.cooptesapp.api
 
-import com.example.cooptesapp.models.UserBio
+import com.example.cooptesapp.models.db.UserBio
 import com.google.firebase.auth.AuthResult
+import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {
 
@@ -12,5 +13,5 @@ interface AuthRepository {
         password: String
     ): AuthResult
 
-    suspend fun createUserBio(userBio: UserBio)
+    suspend fun createUserBio(userBio: UserBio): Flow<UserBio>
 }

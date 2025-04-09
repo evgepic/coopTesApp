@@ -7,8 +7,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cooptesapp.R
+import com.example.cooptesapp.adapters.StoreAdapter
 import com.example.cooptesapp.databinding.FragmentStoreBinding
-import com.example.cooptesapp.models.BasketDialogModel
+import com.example.cooptesapp.models.domain.BasketDialogModel
 import com.example.cooptesapp.models.domain.Shipment
 import com.example.cooptesapp.viewmodels.StoreViewModel
 
