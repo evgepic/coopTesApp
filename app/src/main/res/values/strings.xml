@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">coopTesApp</string>
+    <string name="inni_key">coopTesApp</string>
 </resources>

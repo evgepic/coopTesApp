@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingTop="@dimen/giant"
+    android:paddingBottom="@dimen/medium">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nameInputLayout"
+        style="@style/baseInputEdit"
+        android:layout_marginBottom="@dimen/medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nameEY"
+            style="@style/baseInputEdit.Focusable"
+            android:hint="ФИО" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loginInputLayout"
+        style="@style/baseInputEdit"
+        android:layout_marginBottom="@dimen/medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginET"
+            style="@style/baseInputEdit.Focusable"
+            android:hint="Логин" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordInputLayout"
+        style="@style/baseInputEdit.PasswordToggle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passET"
+            style="@style/baseInputEdit.Focusable"
+            android:hint="Пароль"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/repeatPasswordInputLayout"
+        style="@style/baseInputEdit.PasswordToggle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/repeartPassET"
+            style="@style/baseInputEdit.Focusable"
+            android:hint="Повторите пароль"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/regBtn"
+        style="@style/bottomButton"
+        android:text="Зарегистрироваться"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repeatPasswordInputLayout"
+        app:layout_constraintVertical_bias="1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

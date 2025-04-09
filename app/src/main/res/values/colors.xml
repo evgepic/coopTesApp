@@ -1,5 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--region Palette-->
+    <color name="text_cian">#029AE7</color>
+    <color name="text_black">#141F29</color>
+    <color name="cian">#00AAFF</color>
+    <color name="light_cian">#E6F7FF</color>
+    <color name="gray_dark">#838994</color>
+    <color name="gray_medium">#B0B5BE</color>
+    <color name="gray_light">#E9EBF0</color>
+    <color name="gray_bg">#F3F4F7</color>
+    <color name="red">#E62632</color>
+    <color name="achromatic_black">#141F29</color>
+    <!--endregion Palette-->
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="pure_white">#FFFFFF</color>
+    <color name="white">@color/pure_white</color>
+
+    //LAUNCH
+    <color name="launchBlue">#023CC0</color>
+    <color name="inactiveDot">#E4E8EE</color>
+    <color name="activeDot">#141F29</color>
+
+    //PIN
+    <color name="mainColor">#00AAFF</color>
+    <color name="authHintTextColor">#838994</color>
+    <color name="pinDescriptionTextColor">#21242C</color>
+    <color name="colorPinEnteredBC">#F3F4F7</color>
+    <color name="transparent">#00000000</color>
+    <color name="pinInActive">#E4E8EE</color>
+    <color name="pinActive">#141F29</color>
+    <color name="pinPassed">#4CC864</color>
+    <color name="pinError">#E62632</color>
+    <color name="pinDescriptionHint">#141F29</color>
+
+    //LOGIN
+    <color name="loginHint">#838994</color>
+    <color name="loginInActive">#F3F4F7</color>
+
+    //MAIN
+    <color name="mainBack">#F3F4F7</color>
+    <color name="bottomMenuColor">#0B1D37</color>
+    <color name="textColorActive">#00AAFF</color>
+    <color name="dividerColor">#E9EBF0</color>
+
+    //REQUESTS
+    <color name="inProcessColor">#029AE7</color>
+    <color name="doneColor">#1BA636</color>
+    <color name="expandColor">#E6F7FF</color>
+
+    <!--region Screen-->
+    <color name="screen_main">@color/white</color>
+    <color name="screen_main_reversed">@color/gray_bg</color>
+    <!--endregion Screen-->
+    <!--region Fields-->
+    <color name="edit_field_main">@color/screen_main_reversed</color>
+    <color name="edit_field_main_reversed">@color/screen_main</color>
+    <color name="edit_field_non_focused">@color/edit_field_main</color>
+    <color name="edit_field_focused">@color/edit_field_main_reversed</color>
+    <color name="edit_field_non_focused_reversed">@color/edit_field_main_reversed</color>
+    <color name="edit_field_focused_reversed">@color/edit_field_main</color>
+    <color name="edit_field_border_focused">@color/cian</color>
+    <color name="edit_field_border_error">@color/red</color>
+    <color name="edit_field_drawable_tint">@color/gray_medium</color>
+    <color name="edit_field_drawable_active_tint">@color/cian</color>
+    <!--endregion Fields-->
+
+    <!--region Text-->
+    <color name="text_normal">@color/text_black</color>
+    <color name="text_active">@color/text_cian</color>
+    <color name="text_inactive">@color/gray_dark</color>
+    <color name="text_blocked">@color/gray_medium</color>
+    <color name="text_error">@color/red</color>
+    <color name="text_button_main">@color/white</color>
+    <color name="text_button_secondary">@color/text_cian</color>
+    <!--endregion Text-->
+
+    <!--region Dialogs-->
+    <color name="dialog_bottom_normal">@color/white</color>
+    <color name="dialog_alert_normal">@color/white</color>
+    <color name="dialog_snack_bar_information">@color/achromatic_black</color>
+    <!--endregion Dialogs-->
+    <!--region Material Calendar-->
+    <color name="material_calendar_background">@color/gray_bg</color>
+    <color name="material_calendar_abbreviation">@color/gray_medium</color>
+    <color name="material_calendar_selected">@color/cian</color>
+    <color name="material_calendar_disabled">@color/gray_medium</color>
+    <color name="material_calendar_today">@color/cian</color>
+    <color name="material_calendar_text">@color/text_black</color>
+    <!--endregion Material Calendar-->
+    <!--region Tabs-->
+    <color name="tab_indicator_inactive">@color/gray_light</color>
+    <!--endregion Tabs-->
+
+    <!--region Switches-->
+    <color name="switch_on">@color/cian</color>
+    <color name="switch_off">@color/gray_medium</color>
+    <!--endregion Switches-->
+
+    <!--region Buttons-->
+    <color name="button_main">@color/cian</color>
+    <color name="button_secondary">@color/gray_bg</color>
+    <!--endregion Buttons-->
+    <!--region Chips-->
+    <color name="chip_action">@color/white</color>
+    <color name="chip_action_text">@color/text_active</color>
+    <color name="chip_action_icon">@color/cian</color>
+    <color name="chip_action_icon_inactive">@color/gray_dark</color>
+    <color name="chip_filter_inactive">@color/gray_bg</color>
+    <color name="chip_filter_inactive_text">@color/text_active</color>
+    <color name="chip_filter_active">@color/cian</color>
+    <color name="chip_filter_active_text">@color/white</color>
+    <color name="chip_choice_inactive">@color/gray_bg</color>
+    <color name="chip_choice_inactive_text">@color/text_active</color>
+    <color name="chip_choice_active">@color/cian</color>
+    <color name="chip_choice_active_text">@color/white</color>
+    <!--endregion Chips-->
+    <!--region Messages-->
+    <color name="conversation_message_user">@color/gray_bg</color>
+    <color name="conversation_message_operator">@color/light_cian</color>
+    <!--endregion Messages-->
 </resources>

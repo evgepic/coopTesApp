@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="baseInputField">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/inputFieldHeight</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:ems">10</item>
+        <item name="android:textColorHint">@color/loginHint</item>
+        <item name="android:textCursorDrawable">@drawable/cursor</item>
+    </style>
+
+    <style name="TextStyle">
+        <item name="android:textColor">@color/text_normal</item>
+    </style>
+
+    <style name="TextStyle.Normal" parent="TextStyle">
+        <item name="android:textColor">@color/text_normal</item>
+        <item name="android:textColorHint">@color/text_inactive</item>
+        <item name="android:textColorLink">@color/text_active</item>
+        <item name="android:textSize">@dimen/mediumText</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="baseInputEdit">
+        <item name="android:textColorHint">@color/text_inactive</item>
+        <item name="android:textColor">@color/text_normal</item>
+        <item name="android:textCursorDrawable">@drawable/cursor</item>
+        <item name="android:textAppearance">@style/TextStyle.Normal</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:inputType">text</item>
+        <item name="android:paddingTop">@dimen/extraSmall</item>
+        <item name="android:paddingBottom">@dimen/extraSmall</item>
+        <item name="android:paddingStart">@dimen/medium</item>
+        <item name="android:paddingEnd">@dimen/medium</item>
+        <item name="android:minHeight">@dimen/inputFieldHeight</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="boxBackgroundMode">filled</item>
+        <item name="boxCornerRadiusTopStart">@dimen/editFieldRadius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/editFieldRadius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/editFieldRadius</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/editFieldRadius</item>
+        <item name="boxStrokeColor">@color/edit_field_non_focused</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeErrorColor">@color/edit_field_border_error</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="errorTextColor">@color/text_error</item>
+        <item name="errorIconDrawable">@null</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="hintTextColor">@color/text_inactive</item>
+        <item name="helperTextTextColor">@color/text_inactive</item>
+        <item name="prefixTextAppearance">@style/TextStyle.Normal</item>>
+        <item name="suffixTextAppearance">@style/TextStyle.Normal</item>>
+    </style>
+
+    <style name="amountInput">
+        <item name="android:textColorHint">@color/text_inactive</item>
+        <item name="android:textColor">@color/text_normal</item>
+        <item name="android:textCursorDrawable">@drawable/cursor</item>
+        <item name="android:textAppearance">@style/TextStyle.Normal</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:inputType">text</item>
+        <item name="android:paddingTop">@dimen/extraSmall</item>
+        <item name="android:paddingBottom">@dimen/extraSmall</item>
+        <item name="android:paddingStart">@dimen/medium</item>
+        <item name="android:paddingEnd">@dimen/medium</item>
+        <item name="android:minHeight">@dimen/inputFieldHeight</item>
+        <item name="boxBackgroundMode">filled</item>
+        <item name="boxCornerRadiusTopStart">@dimen/editFieldRadius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/editFieldRadius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/editFieldRadius</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/editFieldRadius</item>
+        <item name="boxStrokeColor">@color/edit_field_non_focused</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeErrorColor">@color/edit_field_border_error</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="errorTextColor">@color/text_error</item>
+        <item name="errorIconDrawable">@null</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="hintTextColor">@color/text_inactive</item>
+        <item name="helperTextTextColor">@color/text_inactive</item>
+        <item name="prefixTextAppearance">@style/TextStyle.Normal</item>>
+        <item name="suffixTextAppearance">@style/TextStyle.Normal</item>>
+    </style>
+
+    <style name="baseInputEdit.Focusable" parent="baseInputEdit">
+        <item name="android:background">@drawable/edit_field_selector</item>
+    </style>
+
+
+    <style name="baseInputEdit.PasswordToggle" parent="baseInputEdit">
+        <item name="passwordToggleDrawable">@drawable/edit_field_password_selector</item>
+        <item name="passwordToggleEnabled">true</item>
+        <item name="passwordToggleTint">@color/black</item>
+    </style>
+
+    <style name="bottomButton">
+        <item name="android:layout_marginBottom">@dimen/medium</item>
+        <item name="android:layout_marginTop">@dimen/medium</item>
+        <item name="android:background">@drawable/main_color_background</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">@dimen/mediumText</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="NavButton">
+        <item name="textAllCaps">false</item>
+        <item name="android:background">@drawable/main_color_background</item>
+        <item name="android:textSize">@dimen/mediumText</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextStyle.Based" parent="TextStyle">
+        <item name="android:textColor">@color/text_normal</item>
+        <item name="android:textColorHint">@color/text_inactive</item>
+        <item name="android:textColorLink">@color/text_active</item>
+        <item name="android:textSize">@dimen/mediumText</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+
+</resources>

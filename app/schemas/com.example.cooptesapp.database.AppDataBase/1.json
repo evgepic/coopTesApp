@@ -1,0 +1,154 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "ca0d453095d7a40bd1b3e55337e7f314",
+    "entities": [
+      {
+        "tableName": "barcode",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`barcodeId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `pack__id` INTEGER NOT NULL, `body` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "barcodeId",
+            "columnName": "barcodeId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pack__id",
+            "columnName": "pack__id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "body",
+            "columnName": "body",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "barcodeId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "unit",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`unitId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `unitName` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "unitId",
+            "columnName": "unitId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unitName",
+            "columnName": "unitName",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "unitId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "pack",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`packId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `unit_id` INTEGER NOT NULL, `packName` TEXT NOT NULL, `type` INTEGER NOT NULL, `quant` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "packId",
+            "columnName": "packId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unit_id",
+            "columnName": "unit_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "packName",
+            "columnName": "packName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quant",
+            "columnName": "quant",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "packId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "pack_price",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`packPriceId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `pack_id` INTEGER NOT NULL, `price` INTEGER NOT NULL, `bonus` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "packPriceId",
+            "columnName": "packPriceId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pack_id",
+            "columnName": "pack_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "price",
+            "columnName": "price",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bonus",
+            "columnName": "bonus",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "packPriceId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ca0d453095d7a40bd1b3e55337e7f314')"
+    ]
+  }
+}
