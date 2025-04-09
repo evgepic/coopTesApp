@@ -56,6 +56,37 @@
         <item name="suffixTextAppearance">@style/TextStyle.Normal</item>>
     </style>
 
+    <style name="amountInput">
+        <item name="android:textColorHint">@color/text_inactive</item>
+        <item name="android:textColor">@color/text_normal</item>
+        <item name="android:textCursorDrawable">@drawable/cursor</item>
+        <item name="android:textAppearance">@style/TextStyle.Normal</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:inputType">text</item>
+        <item name="android:paddingTop">@dimen/extraSmall</item>
+        <item name="android:paddingBottom">@dimen/extraSmall</item>
+        <item name="android:paddingStart">@dimen/medium</item>
+        <item name="android:paddingEnd">@dimen/medium</item>
+        <item name="android:minHeight">@dimen/inputFieldHeight</item>
+        <item name="boxBackgroundMode">filled</item>
+        <item name="boxCornerRadiusTopStart">@dimen/editFieldRadius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/editFieldRadius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/editFieldRadius</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/editFieldRadius</item>
+        <item name="boxStrokeColor">@color/edit_field_non_focused</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeErrorColor">@color/edit_field_border_error</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="errorTextColor">@color/text_error</item>
+        <item name="errorIconDrawable">@null</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="hintTextColor">@color/text_inactive</item>
+        <item name="helperTextTextColor">@color/text_inactive</item>
+        <item name="prefixTextAppearance">@style/TextStyle.Normal</item>>
+        <item name="suffixTextAppearance">@style/TextStyle.Normal</item>>
+    </style>
+
     <style name="baseInputEdit.Focusable" parent="baseInputEdit">
         <item name="android:background">@drawable/edit_field_selector</item>
     </style>

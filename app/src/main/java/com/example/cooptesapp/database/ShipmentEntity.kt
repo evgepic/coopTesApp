@@ -6,6 +6,7 @@ import com.example.cooptesapp.models.db.PackEntity
 import com.example.cooptesapp.models.db.PackPriceEntity
 import com.example.cooptesapp.models.db.UnitEntity
 
+
 data class ShipmentEntity(
     @Embedded
     val packEntity: PackEntity,

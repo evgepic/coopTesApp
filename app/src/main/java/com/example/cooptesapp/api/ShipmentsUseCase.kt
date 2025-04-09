@@ -4,7 +4,7 @@ import com.example.cooptesapp.models.domain.Shipment
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class GetAllShipmentsUseCase(private val dataBaseRepository: DataBaseRepository) {
+class ShipmentsUseCase(private val dataBaseRepository: DataBaseRepository) {
 
     fun getAllShipments(): Flow<List<Shipment>> = flow {
         emit(dataBaseRepository.getShipments())

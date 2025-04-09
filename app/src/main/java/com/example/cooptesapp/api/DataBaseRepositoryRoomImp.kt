@@ -10,4 +10,7 @@ class DataBaseRepositoryRoomImp(private val database: DataBaseRepositoryInstance
     override suspend fun getShipments(): List<Shipment> =
         database.getPacksWithUnit().map { it.toShipment() }
 
+    override suspend fun getShipmentByIdsList(list: List<Long>): List<Shipment> =
+        database.getShipmentsByIds(list).map { it.toShipment() }
+
 }

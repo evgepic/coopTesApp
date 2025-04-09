@@ -42,8 +42,4 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    fun getFireBaseData() {
-        val x = Firebase.database
-    }
-
 }

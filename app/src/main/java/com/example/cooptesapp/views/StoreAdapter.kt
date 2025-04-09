@@ -8,7 +8,10 @@ import com.example.cooptesapp.R
 import com.example.cooptesapp.databinding.ItemShipmentBinding
 import com.example.cooptesapp.models.domain.Shipment
 
-class StoreAdapter(var shipments: List<Shipment>) :
+class StoreAdapter(
+    var shipments: List<Shipment>,
+    private val onItemClick: (shipment: Shipment) -> Unit
+) :
     RecyclerView.Adapter<StoreAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -22,6 +25,9 @@ class StoreAdapter(var shipments: List<Shipment>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.name.text = shipments[position].name
+        holder.binding.root.setOnClickListener {
+            onItemClick(shipments[position])
+        }
     }
 
     override fun getItemCount() = shipments.size

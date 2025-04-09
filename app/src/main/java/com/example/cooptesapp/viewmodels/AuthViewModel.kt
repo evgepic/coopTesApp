@@ -6,12 +6,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import androidx.navigation.Navigation.findNavController
-import com.example.cooptesapp.R
 import com.example.cooptesapp.api.AuthRepositoryImp
 import com.example.cooptesapp.api.LoginUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -21,20 +20,20 @@ class AuthViewModel(
 
     val login: MutableLiveData<String> = MutableLiveData("evgepic@gmail.com")
     val password: MutableLiveData<String> = MutableLiveData("123456")
+    val authState: MutableLiveData<Boolean> = MutableLiveData()
 
-    fun logIn() {
+    fun logIn() =
         viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                loginValidationUseCase.login(login.value, password.value)
+            withContext(Dispatchers.Main) {
+                loginValidationUseCase.login(login.value, password.value).flowOn(Dispatchers.IO)
                     .catch {
                         it
                     }
                     .collect({
-                        //
+                        authState.value = true
                     })
             }
         }
-    }
 
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {

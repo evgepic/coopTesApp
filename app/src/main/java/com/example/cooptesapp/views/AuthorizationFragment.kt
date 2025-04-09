@@ -20,8 +20,7 @@ class AuthorizationFragment : Fragment(R.layout.fragment_authorization) {
         binding = FragmentAuthorizationBinding.bind(view)
         binding?.apply {
             loginBtn.setOnClickListener {
-               // viewmodel.logIn()
-                findNavController().navigate(R.id.action_authFragment_to_storeFragment)
+                viewmodel.logIn()
             }
             registrationBtn.setOnClickListener {
                 findNavController().navigate(R.id.action_authFragment_to_registrationFragment)
@@ -37,6 +36,9 @@ class AuthorizationFragment : Fragment(R.layout.fragment_authorization) {
                 }
             }
         }
+        viewmodel.authState.observe(viewLifecycleOwner, {
+            findNavController().navigate(R.id.action_authFragment_to_storeFragment)
+        })
     }
 
     override fun onDestroyView() {

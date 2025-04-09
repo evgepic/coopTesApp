@@ -22,4 +22,6 @@ class DataBaseRepositoryInstance(
 
     fun getPacksWithUnit() = packDao.getAllShipment()
 
+    fun getShipmentsByIds(idList: List<Long>) = packDao.getShipmentsByIds(idList)
+
 }

@@ -13,10 +13,11 @@ interface PackDao {
     )
     fun getAllShipment(): List<ShipmentEntity>
 
-    /* @Query(
-        "SELECT * FROM pack JOIN unit ON pack.unit_id = unit.id"
+    @Query(
+        "SELECT * FROM pack JOIN unit ON pack.unit_id = unit.unitId JOIN pack_price " +
+                "ON pack_price.pack_id = pack.packId JOIN barcode ON barcode.pack__id = pack.packId WHERE packId IN (:list)"
     )
-    fun getPackWithUnit(): Map<PackEntity, UnitEntity>*/
+    fun getShipmentsByIds(list: List<Long>): List<ShipmentEntity>
 
     @Insert
     fun insertPack(packEntity: PackEntity): Long

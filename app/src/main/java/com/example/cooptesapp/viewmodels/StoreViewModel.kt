@@ -4,8 +4,10 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.cooptesapp.api.AddToBasketUseCase
+import com.example.cooptesapp.api.BasketRepositoryImp
 import com.example.cooptesapp.api.DataBaseRepositoryRoomImp
-import com.example.cooptesapp.api.GetAllShipmentsUseCase
+import com.example.cooptesapp.api.ShipmentsUseCase
 import com.example.cooptesapp.base.DataBaseInstance
 import com.example.cooptesapp.database.DataBaseRepositoryInstance
 import com.example.cooptesapp.models.domain.Shipment
@@ -19,7 +21,7 @@ class StoreViewModel(
 ) : AndroidViewModel(application) {
 
     val list: MutableLiveData<List<Shipment>> = MutableLiveData()
-    private val getAllShipmentsUseCase: GetAllShipmentsUseCase = GetAllShipmentsUseCase(
+    private val shipmentsUseCase: ShipmentsUseCase = ShipmentsUseCase(
         DataBaseRepositoryRoomImp(
             DataBaseRepositoryInstance(
                 (application as DataBaseInstance).getDataBaseInstance().barcodeDao(),
@@ -29,11 +31,14 @@ class StoreViewModel(
             )
         )
     )
+    private val basketUseCase = AddToBasketUseCase(
+        BasketRepositoryImp()
+    )
 
     fun getShipmentsList() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                getAllShipmentsUseCase.getAllShipments()
+                shipmentsUseCase.getAllShipments()
                     .catch {
                         it
                     }
@@ -44,6 +49,10 @@ class StoreViewModel(
                     })
             }
         }
+    }
+
+    fun addToBasket(packId: Long, amount: Long) {
+        basketUseCase.addToBasket(packId, amount)
     }
 
 }

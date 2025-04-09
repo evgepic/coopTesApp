@@ -8,7 +8,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cooptesapp.R
 import com.example.cooptesapp.databinding.FragmentStoreBinding
+import com.example.cooptesapp.models.BasketDialogModel
+import com.example.cooptesapp.models.domain.Shipment
 import com.example.cooptesapp.viewmodels.StoreViewModel
+
 
 class StoreFragment : Fragment(R.layout.fragment_store) {
 
@@ -18,7 +21,7 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentStoreBinding.bind(view)
-        val _adapter = StoreAdapter(emptyList())
+        val _adapter = StoreAdapter(emptyList(), { showDialog(it) })
         binding?.apply {
             shipmentsRW.apply {
                 layoutManager = LinearLayoutManager(activity)
@@ -36,6 +39,22 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
             _adapter.shipments = it
             _adapter.notifyDataSetChanged()
         })
+    }
+
+    private fun addToBasket(basketDialogModel: BasketDialogModel) {
+        viewmodel.addToBasket(basketDialogModel.packId, basketDialogModel.amount)
+    }
+
+    private fun showDialog(shipment: Shipment) {
+        val dialogFragment = StoreDialogFragment({ addToBasket(it) })
+        val args = Bundle()
+        args.putString("name", shipment.name)
+        args.putLong("amount", shipment.price.amount)
+        args.putLong("bonus", shipment.price.bonus)
+        args.putLong("packId", shipment.packId)
+        args.putString("unit", shipment.dimension.name)
+        dialogFragment.arguments = args
+        dialogFragment.show(parentFragmentManager, "MyDia")
     }
 
     override fun onDestroyView() {
