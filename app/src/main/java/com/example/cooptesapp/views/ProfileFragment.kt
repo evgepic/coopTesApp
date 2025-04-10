@@ -13,7 +13,7 @@ import com.example.cooptesapp.databinding.FragmentProfileBinding
 import com.example.cooptesapp.models.domain.DraftModel
 import com.example.cooptesapp.viewmodels.ProfileViewModel
 
-class ProfileFragment : Fragment(R.layout.fragment_profile) {
+class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
 
     private var binding: FragmentProfileBinding? = null
     private val viewModel: ProfileViewModel by viewModels { ProfileViewModel.Factory }
@@ -28,12 +28,15 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 adapter = _adapter
             }
         }
+        viewModel.getUser()
         viewModel.getDraftsInfo()
         viewModel.list.observe(viewLifecycleOwner, {
             _adapter.draftShipments = it
             _adapter.notifyDataSetChanged()
         })
-
+        viewModel.profileData.observe(viewLifecycleOwner, {
+            binding?.userName?.text = it
+        })
     }
 
     fun showInnerShipments(list: List<DraftModel>) {
@@ -43,6 +46,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        binding = null
+    }
+
+    override fun clearBinding() {
         binding = null
     }
 

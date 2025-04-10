@@ -5,8 +5,10 @@ import com.example.cooptesapp.base.InputValidation
 import com.example.cooptesapp.base.isEmailNotValid
 import com.example.cooptesapp.base.isPasswordToWeak
 import com.example.cooptesapp.models.db.User
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 
 class LoginUseCase(private val authRepository: AuthRepository) {
 
@@ -27,6 +29,6 @@ class LoginUseCase(private val authRepository: AuthRepository) {
                     )
                 ) else throw InputValidation.UserNotExist()
             } ?: throw InputValidation.UserNotExist()
-        }
+        }.flowOn(Dispatchers.IO)
 
 }

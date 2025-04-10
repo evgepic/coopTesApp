@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.example.cooptesapp.R
+import com.example.cooptesapp.database.PriceConverter
 import com.example.cooptesapp.databinding.DialogFragmentStoreBinding
 import com.example.cooptesapp.models.domain.BasketDialogModel
 
@@ -21,7 +22,6 @@ class StoreDialogFragment(private val resultAction: (basketDialogModel: BasketDi
         savedInstanceState: Bundle?
     ): View {
         val rootView: View = inflater.inflate(R.layout.dialog_fragment_store, container, false)
-        dialog!!.setTitle("Simple Dialog")
         return rootView
     }
 
@@ -35,8 +35,9 @@ class StoreDialogFragment(private val resultAction: (basketDialogModel: BasketDi
         binding = DialogFragmentStoreBinding.bind(view)
         binding?.apply {
             nameTV.text = name
-            amountTV.text = "Цена : $amount за $dimension"
-            discountTV.text = "Скидка $bonus  за $dimension"
+            amountTV.text = "Цена:\n" + PriceConverter.convertPrice(amount!!, dimension!!)
+            discountTV.text =
+                "Цена со скидкой:\n" + PriceConverter.convertPrice(amount - bonus!!, dimension!!)
             amountET.hint = dimension
             addToBasketBtn.setOnClickListener {
                 amountET.text.toString().let {
@@ -48,6 +49,11 @@ class StoreDialogFragment(private val resultAction: (basketDialogModel: BasketDi
                 }
             }
         }
+    }
+
+    override fun onPause() {
+        this.dismiss()
+        super.onPause()
     }
 
     override fun onDestroyView() {

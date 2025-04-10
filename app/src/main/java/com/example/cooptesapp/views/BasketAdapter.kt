@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cooptesapp.R
+import com.example.cooptesapp.database.PriceConverter
 import com.example.cooptesapp.databinding.ItemBasketBinding
 import com.example.cooptesapp.models.domain.Shipment
 
@@ -24,13 +25,17 @@ class BasketAdapter(
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.name.text = shipments[position].name
-        holder.binding.deleteBtn.setOnClickListener {
-            deleteAction.invoke(shipments[position].packId)
+        shipments[position].let { s ->
+            holder.binding.name.text = s.name
+            holder.binding.deleteIV.setOnClickListener {
+                deleteAction.invoke(s.packId)
+            }
+            holder.binding.price.text =
+                PriceConverter.convertPrice(s.price.amount - s.price.bonus, s.dimension.name)
+            holder.binding.totalPrice.text =
+                "Сумма: " + PriceConverter.convertPrice((s.price.amount - s.price.bonus) * s.amount)
+            holder.binding.amountTV.text = "Кол-в: " + s.amount.toString() + s.dimension.name
         }
-        holder.binding.price.text = shipments[position].price.amount.toString()
-        holder.binding.priceWithDiscount.text = shipments[position].price.bonus.toString()
-        holder.binding.amountTV.text = shipments[position].amount.toString()
     }
 
     override fun getItemCount() = shipments.size

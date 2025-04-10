@@ -2,10 +2,11 @@ package com.example.cooptesapp.views
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cooptesapp.R
 import com.example.cooptesapp.adapters.StoreAdapter
 import com.example.cooptesapp.databinding.FragmentStoreBinding
@@ -14,7 +15,7 @@ import com.example.cooptesapp.models.domain.Shipment
 import com.example.cooptesapp.viewmodels.StoreViewModel
 
 
-class StoreFragment : Fragment(R.layout.fragment_store) {
+class StoreFragment : BaseFragment(R.layout.fragment_store) {
 
     private var binding: FragmentStoreBinding? = null
     val viewmodel: StoreViewModel by viewModels()
@@ -25,13 +26,18 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
         val _adapter = StoreAdapter(emptyList(), { showDialog(it) })
         binding?.apply {
             shipmentsRW.apply {
+                addItemDecoration(
+                    DividerItemDecoration(context, RecyclerView.VERTICAL).apply {
+                        context.getDrawable(R.drawable.rw_devider)?.let { setDrawable(it) }
+                    }
+                )
                 layoutManager = LinearLayoutManager(activity)
                 adapter = _adapter
             }
-            profileBtn.setOnClickListener {
+            profileIV.setOnClickListener {
                 findNavController().navigate(R.id.action_storeFragment_to_profileFragment)
             }
-            basketBtn.setOnClickListener {
+            basketIV.setOnClickListener {
                 findNavController().navigate(R.id.action_storeFragment_to_basketFragment)
             }
         }
@@ -43,11 +49,14 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
     }
 
     private fun addToBasket(basketDialogModel: BasketDialogModel) {
-        viewmodel.addToBasket(basketDialogModel.packId, basketDialogModel.amount)
+        if (basketDialogModel.amount < 100000) {
+            viewmodel.addToBasket(basketDialogModel.packId, basketDialogModel.amount)
+        } else
+            baseUiActions.showError("Cумма слишком большая")
     }
 
     private fun showDialog(shipment: Shipment) {
-        val dialogFragment = StoreDialogFragment({ addToBasket(it) })
+        val dialogFragment = StoreDialogFragment{ addToBasket(it) }
         val args = Bundle()
         args.putString("name", shipment.name)
         args.putLong("amount", shipment.price.amount)
@@ -58,9 +67,7 @@ class StoreFragment : Fragment(R.layout.fragment_store) {
         dialogFragment.show(parentFragmentManager, "MyDia")
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun clearBinding() {
         binding = null
     }
-
 }

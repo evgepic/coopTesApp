@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cooptesapp.R
+import com.example.cooptesapp.database.PriceConverter
 import com.example.cooptesapp.databinding.ItemShipmentBinding
 import com.example.cooptesapp.models.domain.Shipment
 
@@ -26,10 +27,10 @@ class StoreAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         shipments[position].let {
             holder.binding.name.text = it.name
-            holder.binding.price.text =
-                it.price.amount.toString() + "за ${it.dimension.name}"
+            holder.binding.price.text = PriceConverter.convertPrice(it.price.amount, it.dimension.name)
+            //it.price.amount.toString() + "за ${it.dimension.name}"
             holder.binding.priceWithDiscount.text =
-                (it.price.amount - it.price.bonus).toString() + "за ${it.dimension.name}"
+                PriceConverter.convertPrice(it.price.amount - it.price.bonus, it.dimension.name)
             holder.binding.root.setOnClickListener {
                 onItemClick(shipments[position])
             }

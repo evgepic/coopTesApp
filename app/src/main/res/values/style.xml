@@ -109,6 +109,11 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name= "progressDialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="windowMinWidthMajor">30%</item>
+        <item name="windowMinWidthMinor">30%</item>
+    </style>
+
     <style name="NavButton">
         <item name="textAllCaps">false</item>
         <item name="android:background">@drawable/main_color_background</item>

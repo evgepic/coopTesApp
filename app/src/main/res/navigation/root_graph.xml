@@ -9,7 +9,9 @@
         android:label="AuthorizationFragment" >
         <action
             android:id="@+id/action_authFragment_to_storeFragment"
-            app:destination="@id/storeFragment" />
+            app:destination="@id/storeFragment"
+            app:launchSingleTop="false"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_authFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />

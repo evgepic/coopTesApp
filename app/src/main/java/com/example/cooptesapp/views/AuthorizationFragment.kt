@@ -3,25 +3,26 @@ package com.example.cooptesapp.views
 import android.os.Bundle
 import android.view.View
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.cooptesapp.R
-import com.example.cooptesapp.base.ErrorHandler
+import com.example.cooptesapp.base.InputValidation
 import com.example.cooptesapp.databinding.FragmentAuthorizationBinding
 import com.example.cooptesapp.viewmodels.AuthViewModel
 
-class AuthorizationFragment : Fragment(R.layout.fragment_authorization) {
+class AuthorizationFragment : BaseFragment(R.layout.fragment_authorization) {
 
     private var binding: FragmentAuthorizationBinding? = null
     val viewmodel: AuthViewModel by viewModels { AuthViewModel.Factory }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAuthorizationBinding.bind(view)
         binding?.apply {
             loginBtn.setOnClickListener {
-                findNavController().navigate(R.id.action_authFragment_to_storeFragment)
+                baseUiActions.startLoading()
+                viewmodel.logIn()
             }
             registrationBtn.setOnClickListener {
                 findNavController().navigate(R.id.action_authFragment_to_registrationFragment)
@@ -38,15 +39,21 @@ class AuthorizationFragment : Fragment(R.layout.fragment_authorization) {
             }
         }
         viewmodel.errorHandler.observe(viewLifecycleOwner, {
-            (activity as ErrorHandler).handle(it)
+            this.baseUiActions.showError(it ?: throw InputValidation.UserNotExist())
+            viewmodel.errorHandler.value = null
         })
         viewmodel.authState.observe(viewLifecycleOwner, {
-            findNavController().navigate(R.id.action_authFragment_to_storeFragment)
+            baseUiActions.endLoading()
+            it?.let { state ->
+                if (state) {
+                    findNavController().navigate(R.id.action_authFragment_to_storeFragment)
+                }
+            }
         })
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun clearBinding() {
         binding = null
     }
+
 }

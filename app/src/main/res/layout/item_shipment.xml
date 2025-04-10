@@ -3,20 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/medium"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:padding="@dimen/medium">
 
     <TextView
         android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="8dp"
         android:text="Название товара"
-        android:textSize="@dimen/large"
-        android:gravity="center"
-        android:textStyle="bold"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="@dimen/large"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,23 +25,21 @@
         android:padding="4dp"
         android:text="Название товара"
         android:textColor="@color/black"
-        android:textSize="@dimen/medium"
-        android:textStyle=""
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name" />
+        android:textSize="@dimen/small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/priceWithDiscount" />
 
     <TextView
         android:id="@+id/priceWithDiscount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/large"
         android:padding="4dp"
         android:text="Название товара"
         android:textColor="@color/red"
         android:textSize="@dimen/medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/price"
-        app:layout_constraintTop_toBottomOf="@id/name" />
-    " />
+        app:layout_constraintTop_toTopOf="@+id/name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

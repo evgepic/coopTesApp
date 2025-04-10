@@ -19,6 +19,7 @@ android {
         kapt {
             arguments { arg("room.schemaLocation", "$projectDir/schemas") }
         }
+        vectorDrawables.useSupportLibrary = true
     }
     buildFeatures {
         viewBinding true
