@@ -12,7 +12,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class AuthViewModel(
     private val loginValidationUseCase: LoginUseCase
@@ -25,15 +24,13 @@ class AuthViewModel(
 
     fun logIn() =
         viewModelScope.launch {
-            withContext(Dispatchers.Main) {
-                loginValidationUseCase.login(login.value, password.value).flowOn(Dispatchers.IO)
-                    .catch {
-                        errorHandler.value = it
-                    }
-                    .collect({
-                        authState.value = true
-                    })
-            }
+            loginValidationUseCase.login(login.value, password.value).flowOn(Dispatchers.IO)
+                .catch {
+                    errorHandler.value = it
+                }
+                .collect({
+                    authState.value = true
+                })
         }
 
     companion object {

@@ -18,7 +18,7 @@ class DraftRepositoryImp() : DraftRepository {
     override fun getDraftsList(): Flow<List<DatedShipment>> = flow {
         val x = dB.collection("bills/$user/items").get().await()
         val mapx = x?.documents?.map {
-            it.toObject(DatedShipment::class.java) ?: throw NullPointerException()
+            it?.toObject(DatedShipment::class.java) ?: throw NullPointerException()
         }
         emit(mapx!!)
     }

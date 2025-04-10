@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cooptesapp.R
+import com.example.cooptesapp.database.PriceConverter
 import com.example.cooptesapp.databinding.ItemDraftsBinding
 import com.example.cooptesapp.models.domain.DraftModel
 
@@ -23,10 +24,10 @@ class DraftsDetailsAdapter(var draftShipments: List<DraftModel>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         draftShipments[position].let {
             holder.binding.draftNameTV.text = it.name
-            holder.binding.draftBarcodeTV.text = it.barcode
-            holder.binding.draftPriceTV.text = it.price.toString()
-            holder.binding.draftDiscountTV.text = it.discount.toString()
-            holder.binding.draftAmountTextView.text = it.amount.toString()
+            holder.binding.draftBarcodeTV.text = "Штрихкод:\n" + it.barcode
+            holder.binding.draftDiscountTV.text = PriceConverter.convertPrice(it.price * it.amount)
+            holder.binding.draftPriceTV.text = PriceConverter.convertPrice(it.price)
+            holder.binding.draftAmountTextView.text = "Кол-во: "+ it.amount.toString()
         }
     }
 

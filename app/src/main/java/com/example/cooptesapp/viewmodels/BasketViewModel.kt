@@ -6,16 +6,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.cooptesapp.api.imp.BasketRepositoryImp
 import com.example.cooptesapp.api.imp.DataBaseRepositoryRoomImp
-import com.example.cooptesapp.usecases.DeleteFromBasketUseCase
-import com.example.cooptesapp.usecases.DoPaymentBasketUseCase
-import com.example.cooptesapp.usecases.GetBasketUseCase
 import com.example.cooptesapp.base.DataBaseInstance
 import com.example.cooptesapp.database.DataBaseRepositoryInstance
 import com.example.cooptesapp.models.domain.Shipment
+import com.example.cooptesapp.usecases.DeleteFromBasketUseCase
+import com.example.cooptesapp.usecases.DoPaymentBasketUseCase
+import com.example.cooptesapp.usecases.GetBasketUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -25,6 +24,7 @@ class BasketViewModel(application: Application) :
     AndroidViewModel(application) {
 
     var list: MutableLiveData<List<Shipment>> = MutableLiveData()
+    val doPaymentAmount: MutableLiveData<Long> = MutableLiveData()
     private val basketRepImp = BasketRepositoryImp()
     private val dataBaseRepository = DataBaseRepositoryRoomImp(
         DataBaseRepositoryInstance(
@@ -45,7 +45,7 @@ class BasketViewModel(application: Application) :
 
     fun getBasketItems() {
         viewModelScope.launch {
-            getBasketUseCase.getBasket().flowOn(Dispatchers.Main).collect {
+            getBasketUseCase.getBasket().collect {
                 list.value = it
             }
         }
@@ -58,14 +58,15 @@ class BasketViewModel(application: Application) :
 
     fun doPayment() {
         val currentDate = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
-        val currentTime: String = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
+        val currentTime: String =
+            SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
         viewModelScope.launch {
-            withContext(Dispatchers.Main) {
-                doPaymentBasketUseCase.doPayment(currentTime, currentDate).flowOn(Dispatchers.IO)
-                    .collect({
-                        list.value = emptyList()
-                    })
-            }
+            doPaymentBasketUseCase.doPayment(currentTime, currentDate)
+                .flowOn(Dispatchers.IO)
+                .collect {
+                    doPaymentAmount.value = it
+                    list.value = emptyList()
+                }
         }
     }
 

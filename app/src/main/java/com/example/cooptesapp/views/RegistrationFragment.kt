@@ -2,19 +2,15 @@ package com.example.cooptesapp.views
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.cooptesapp.R
-import com.example.cooptesapp.base.ErrorHandler
-import com.example.cooptesapp.base.LoadingAction
 import com.example.cooptesapp.databinding.FragmentRegistrationBinding
 import com.example.cooptesapp.viewmodels.RegistrationViewModel
 
 
-class RegistrationFragment : Fragment(R.layout.fragment_registration) {
+class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 
     private var binding: FragmentRegistrationBinding? = null
     val viewmodel: RegistrationViewModel by viewModels { RegistrationViewModel.Factory }
@@ -23,12 +19,11 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRegistrationBinding.bind(view)
         viewmodel.errorHandler.observe(viewLifecycleOwner, {
-            ((this@RegistrationFragment.activity) as LoadingAction).endLoading()
-            (activity as ErrorHandler).handle(it)
+            baseUiActions?.showError(it.message ?: "Unknown error")
         })
         binding?.apply {
             regBtn.setOnClickListener {
-                ((this@RegistrationFragment.activity) as LoadingAction).startLoading()
+                baseUiActions?.startLoading()
                 viewmodel.registration()
             }
             passET.apply {
@@ -46,14 +41,14 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
                     viewmodel.name.value = it.toString()
                 }
             }
+            loginET.apply {
+                doAfterTextChanged {
+                    viewmodel.login.value = it.toString()
+                }
+            }
             viewmodel.user.observe(viewLifecycleOwner, {
-                ((this@RegistrationFragment.activity) as LoadingAction).endLoading()
-                val toast = Toast.makeText(
-                    this@RegistrationFragment.context,
-                    "Регистрация прошла успешно",
-                    Toast.LENGTH_LONG
-                )
-                toast.show()
+                baseUiActions?.endLoading()
+                baseUiActions?.showToast(R.string.succsesRegistration)
                 findNavController().popBackStack()
             })
         }
