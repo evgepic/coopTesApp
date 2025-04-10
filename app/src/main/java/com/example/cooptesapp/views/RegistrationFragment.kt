@@ -6,6 +6,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.cooptesapp.R
+import com.example.cooptesapp.base.InputValidation
 import com.example.cooptesapp.databinding.FragmentRegistrationBinding
 import com.example.cooptesapp.viewmodels.RegistrationViewModel
 
@@ -19,11 +20,11 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRegistrationBinding.bind(view)
         viewmodel.errorHandler.observe(viewLifecycleOwner, {
-            baseUiActions?.showError(it.message ?: "Unknown error")
+            baseUiActions.showError(it ?: throw InputValidation.UserNotExist())
         })
         binding?.apply {
             regBtn.setOnClickListener {
-                baseUiActions?.startLoading()
+                baseUiActions.startLoading()
                 viewmodel.registration()
             }
             passET.apply {
@@ -47,15 +48,14 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
                 }
             }
             viewmodel.user.observe(viewLifecycleOwner, {
-                baseUiActions?.endLoading()
-                baseUiActions?.showToast(R.string.succsesRegistration)
+                baseUiActions.endLoading()
+                baseUiActions.showToast(R.string.succsesRegistration)
                 findNavController().popBackStack()
             })
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun clearBinding() {
         binding = null
     }
 }

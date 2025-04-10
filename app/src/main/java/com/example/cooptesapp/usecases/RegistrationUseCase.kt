@@ -18,7 +18,7 @@ class RegistrationUseCase(private val authRepository: AuthRepository) {
     ) = flow {
         if (registrationModel.login == null) throw InputValidation.EmptyField()
         if (registrationModel.password == null) throw InputValidation.EmptyPasswordField()
-        if (registrationModel.repeatPassword != registrationModel.repeatPassword) throw InputValidation.PassNotCompare()
+        if (registrationModel.password != registrationModel.repeatPassword) throw InputValidation.PassNotCompare()
         if (registrationModel.login.isEmpty()) throw InputValidation.EmptyField()
         if (registrationModel.login.isEmailNotValid()) throw InputValidation.WrongEmail()
         if (registrationModel.password.isEmpty()) throw InputValidation.EmptyPasswordField()

@@ -49,4 +49,8 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
         binding = null
     }
 
+    override fun clearBinding() {
+        binding = null
+    }
+
 }

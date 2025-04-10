@@ -10,4 +10,6 @@ interface BaseUiActions {
 
     fun showError(string: String)
 
+    fun showError(throwable: Throwable)
+
 }

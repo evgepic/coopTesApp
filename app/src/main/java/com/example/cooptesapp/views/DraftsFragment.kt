@@ -34,9 +34,7 @@ class DraftsFragment : BaseFragment(R.layout.fragment_drafts) {
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun clearBinding() {
         binding = null
     }
-
 }

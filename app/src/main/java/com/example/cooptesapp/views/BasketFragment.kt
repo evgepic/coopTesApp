@@ -42,14 +42,12 @@ class BasketFragment : BaseFragment(R.layout.fragment_basket) {
         })
         viewmodel.doPaymentAmount.observe(viewLifecycleOwner, {
             val sum = PriceConverter.convertPrice(it)
-            this.baseUiActions?.showError("Вы успешно купили товаров на сумму $sum")
+            this.baseUiActions.showError("Вы успешно купили товаров на сумму $sum")
         })
     }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun clearBinding() {
         binding = null
     }
-
 }

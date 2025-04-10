@@ -49,11 +49,14 @@ class StoreFragment : BaseFragment(R.layout.fragment_store) {
     }
 
     private fun addToBasket(basketDialogModel: BasketDialogModel) {
-        viewmodel.addToBasket(basketDialogModel.packId, basketDialogModel.amount)
+        if (basketDialogModel.amount < 100000) {
+            viewmodel.addToBasket(basketDialogModel.packId, basketDialogModel.amount)
+        } else
+            baseUiActions.showError("Cумма слишком большая")
     }
 
     private fun showDialog(shipment: Shipment) {
-        val dialogFragment = StoreDialogFragment({ addToBasket(it) })
+        val dialogFragment = StoreDialogFragment{ addToBasket(it) }
         val args = Bundle()
         args.putString("name", shipment.name)
         args.putLong("amount", shipment.price.amount)
@@ -64,9 +67,7 @@ class StoreFragment : BaseFragment(R.layout.fragment_store) {
         dialogFragment.show(parentFragmentManager, "MyDia")
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun clearBinding() {
         binding = null
     }
-
 }

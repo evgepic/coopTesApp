@@ -51,6 +51,11 @@ class StoreDialogFragment(private val resultAction: (basketDialogModel: BasketDi
         }
     }
 
+    override fun onPause() {
+        this.dismiss()
+        super.onPause()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null

@@ -9,7 +9,7 @@ import com.example.cooptesapp.base.BaseUiActions
 
 abstract class BaseFragment(layoutResId: Int) : Fragment(layoutResId) {
 
-    var baseUiActions: BaseUiActions? = null
+    lateinit var baseUiActions: BaseUiActions
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,6 +18,13 @@ abstract class BaseFragment(layoutResId: Int) : Fragment(layoutResId) {
     ): View? {
         baseUiActions = (activity as BaseUiActions)
         return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
+    abstract fun clearBinding()
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        clearBinding()
     }
 
 }

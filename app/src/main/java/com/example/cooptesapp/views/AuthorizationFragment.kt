@@ -15,11 +15,13 @@ class AuthorizationFragment : BaseFragment(R.layout.fragment_authorization) {
     private var binding: FragmentAuthorizationBinding? = null
     val viewmodel: AuthViewModel by viewModels { AuthViewModel.Factory }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAuthorizationBinding.bind(view)
         binding?.apply {
             loginBtn.setOnClickListener {
+                baseUiActions.startLoading()
                 viewmodel.logIn()
             }
             registrationBtn.setOnClickListener {
@@ -37,28 +39,21 @@ class AuthorizationFragment : BaseFragment(R.layout.fragment_authorization) {
             }
         }
         viewmodel.errorHandler.observe(viewLifecycleOwner, {
-            val msg = when (it) {
-                is InputValidation.EmptyField -> "Пустое поле"
-                is InputValidation.EmptyPasswordField -> "Пустое поле пароль"
-                is InputValidation.WeakPass ->
-                    "Пароль должен быть больше 6 символов"
-
-                is InputValidation.WrongEmail -> "Некорректный email"
-                is InputValidation.UserNotExist -> "Пользователя не существует"
-                is InputValidation.PassNotCompare -> "Пароли не совпадают"
-                else -> {
-                    it.message.toString()
-                }
-            }
-            this.baseUiActions?.showError(msg)
+            this.baseUiActions.showError(it ?: throw InputValidation.UserNotExist())
+            viewmodel.errorHandler.value = null
         })
         viewmodel.authState.observe(viewLifecycleOwner, {
-            findNavController().navigate(R.id.action_authFragment_to_storeFragment)
+            baseUiActions.endLoading()
+            it?.let { state ->
+                if (state) {
+                    findNavController().navigate(R.id.action_authFragment_to_storeFragment)
+                }
+            }
         })
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun clearBinding() {
         binding = null
     }
+
 }

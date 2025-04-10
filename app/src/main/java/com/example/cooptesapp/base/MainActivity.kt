@@ -1,5 +1,6 @@
 package com.example.cooptesapp.base
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -21,16 +22,28 @@ class MainActivity : AppCompatActivity(), BaseUiActions {
         setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         progressDialog = createProgressDialog()
-        val barcodeDao = (application as DataBaseInstance).getDataBaseInstance().barcodeDao()
-        val unitDao = (application as DataBaseInstance).getDataBaseInstance().unitDao()
-        val packDao = (application as DataBaseInstance).getDataBaseInstance().packDao()
-        val packPriceDao = (application as DataBaseInstance).getDataBaseInstance().packPriceDao()
-        val dbRep = DataBaseRepositoryInstance(barcodeDao, packDao, packPriceDao, unitDao)
+        isFirstLaunch()
+    }
 
-        // -> comment after 1rst setUp
-        //val list = DBHelper.createBDCollection()
-        //viewmodel.insert(dbRep, list)
-        //
+    private fun isFirstLaunch() {
+        val key = "IFL"
+        val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        if (sharedPref.getBoolean(key, true)) {
+            with(sharedPref.edit()) {
+                putBoolean(key, false)
+                apply()
+            }
+            val list = DBHelper.createBDCollection()
+            (application as DataBaseInstance).let {
+                val dbRep = DataBaseRepositoryInstance(
+                    it.getDataBaseInstance().barcodeDao(),
+                    it.getDataBaseInstance().packDao(),
+                    it.getDataBaseInstance().packPriceDao(),
+                    it.getDataBaseInstance().unitDao()
+                )
+                viewmodel.insert(dbRep, list)
+            }
+        }
     }
 
     override fun showToast(stringResId: Int) {
@@ -45,6 +58,22 @@ class MainActivity : AppCompatActivity(), BaseUiActions {
     override fun showError(string: String) {
         endLoading()
         createErrorDialog(string)
+    }
+
+    override fun showError(throwable: Throwable) {
+        endLoading()
+        val msg = when (throwable) {
+            is InputValidation.EmptyField -> "Пустое поле ввода"
+            is InputValidation.EmptyPasswordField -> "Пустое поле пароль"
+            is InputValidation.WeakPass ->
+                "Пароль должен быть больше 6 символов"
+
+            is InputValidation.WrongEmail -> "Некорректный email"
+            is InputValidation.UserNotExist -> "Пользователя не существует"
+            is InputValidation.PassNotCompare -> "Пароли не совпадают"
+            else -> throwable.message ?: "Unknown error"
+        }
+        createErrorDialog(msg)
     }
 
     private fun createProgressDialog() =

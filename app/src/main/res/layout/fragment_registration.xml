@@ -33,7 +33,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/loginET"
             style="@style/baseInputEdit.Focusable"
-            android:hint="Логин" />
+            android:hint="Email" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

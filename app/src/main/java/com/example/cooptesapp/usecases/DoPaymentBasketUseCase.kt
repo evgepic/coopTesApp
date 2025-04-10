@@ -44,7 +44,7 @@ class DoPaymentBasketUseCase(
             ).await()
             var result: Long = 0
             amountedShipment.forEach {
-                result = (it.price.amount - it.price.bonus) * it.amount
+                result += (it.price.amount - it.price.bonus) * it.amount
                 basketRepository.deleteFromBasket(it.packId)
             }
             emit(result)
